@@ -1,0 +1,248 @@
+﻿@model ResourceBox.Areas.ContactUs.Controllers.ContactUsController
+@*@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}*@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS (css/bootstrap) -->
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800">
+    <link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+    <script src="~/Scripts/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <!-- Custom CSS (css\custom) -->
+    <link rel="stylesheet" href="~/Content/custom/contact_page.css" />
+
+    <!--  ......................... -->
+
+    <title>ContactUs</title>
+</head>
+<body>
+
+    <div id="ContactUs_background_top"> </div>
+
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="mt-5">Contact Us</h1>
+                    <div class="sticky_nav">
+                        <p>
+                            We are always here to help. If your have requirements/queries about our services; fill up the contact form
+                            below and we'll do our best to reply within 24 hours Alternatively simply pickup the phone and give us a
+                            call.
+                        </p>
+                    </div>
+                    <hr />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @if (ViewBag.Error != null)
+    {
+        <h2>@ViewBag.Error</h2>
+    }
+
+    @if (ViewBag.sentStatus == 0)
+    {
+        <script>
+            $(document).ready(function () {
+                $("#myModal").modal('show');
+            });
+
+            setTimeout(function () {
+                $("#myModal").modal("hide");
+            }, 2500);
+        </script>
+
+        <div id="myModal" class="modal fade">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content" id="ContactUs_ErrorSign" style="background-color: transparent !important;padding:30%; ">
+                    @* <div class="modal-header">
+                            <h5 class="modal-title">Subscribe our Newsletter</h5>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>*@
+                    @*<div class="modal-body">
+                            <p>Subscribe to our mailing list to get the latest updates straight in your inbox.</p>
+
+                        </div>*@
+                </div>
+            </div>
+        </div>
+
+
+    }
+
+    @if (ViewBag.sentStatus == 1)
+    {
+        <script>
+            $(document).ready(function () {
+                $("#myModal").modal('show');
+            });
+
+            setTimeout(function () {
+                $("#myModal").modal("hide");
+            }, 2500);
+        </script>
+
+        <div id="myModal" class="modal fade">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content" id="ContactUs_SuccessfullSign" style="background-color: transparent !important;padding:20%; ">
+                   
+                </div>
+            </div>
+        </div>
+
+
+    }
+
+
+    <section class="form-section" id="email_section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <form method="post" action="ContactUs">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <input type="text" name="name" class="form-control" placeholder="Full name *" value="" required>
+
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="email" name="email" class="form-control" placeholder="Email Address *" value="" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <input type="number" name="contact_no" class="form-control" placeholder="Contact Number " value="<">
+
+                            </div>
+
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <input type="text" name="subject" class="form-control" placeholder="Subject " value="">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <textarea class="form-control" name="message" rows="3" placeholder="Type your message...." value="" required></textarea>
+                            </div>
+                        </div>
+
+
+                        <div>
+                            @*   @using (Html.BeginForm("FormSubmit", "ContuctUs", FormMethod.Post))
+                                {*@
+                            <div class="g-recaptcha" data-sitekey="6Ld3EH8aAAAAANZGEIYJ9_9TwMhRStQMDvgUhbRW" required></div>
+
+                            <br /><br />
+
+                            <div class="form-row">
+                                <div class="form-group col-md-12 text-center">
+                                    <button type="submit" name="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Send Message</button>
+                                </div>
+                            </div>
+
+                            @*}*@
+                        </div>
+
+                        @*
+                            <span style="display:inline-block; font-size:20px;margin:20px 0;padding:20px;border:1px solid #D3D3D3">
+                                @ViewBag.Message
+                            </span>*@
+
+                        <script src='https://www.google.com/recaptcha/api.js' type="text/javascript"></script>
+
+
+
+
+                        @*
+                            <div class="form-row">
+                                <div class="form-group col-md-12 text-center">
+                                    <button type="submit" name="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Send Message</button>
+                                </div>
+                            </div>*@
+
+
+                    </form>
+
+                </div>
+
+
+                <div class="col-md-6 address">
+                    <h5>Call Us / WhatsApp</h5>
+                    <p>
+                        <a href="tel:+880150000000"><i class="fas fa-phone"></i> +(880) 150000000 </a><br>
+                    </p>
+                    <h5>Email / Website</h5>
+                    <p>
+                        <a href="mailto:joyultimates@gmail.com"><i class="fas fa-envelope"></i> joyultimates@gmail.com</a><br>
+                        <a href="https://joy-jahincreation.com/"><i class="fas fa-globe"></i></i> www.joyjahincreation.com </a>
+
+                    </p>
+                    <h5>Working hours</h5>
+                    <p>
+                        Mon - Fri : 9am - 6pm(BD)
+                    </p>
+                    <h5>Address</h5>
+                    <p>
+                        modhubag,moghbazar dhaka-1217
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container-fluid">
+
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d271.4142682237154!2d90.41142931494443!3d23.758055100731617!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b880bbc20fad%3A0x8f3132355a955e14!2s383%2F1%20Old%20Elephant%20Road%2C%20Dhaka!5e0!3m2!1sen!2sbd!4v1588655118531!5m2!1sen!2sbd" width="100%" height="300px" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+
+        </div>
+
+
+    </section>
+
+    <div id="ContactUs_background_bottom"> </div>
+
+
+    <script src="~/Scripts/JS/lottie.min.js"></script>
+    <script src="~/Areas/ContactUs/Scripts/ContactUs_background_top.js"></script>
+    <script src="~/Areas/ContactUs/Scripts/ContactUs_background_bottom.js"></script>
+    <script src="~/Areas/ContactUs/Scripts/ErrorSign.js"></script>
+    <script src="~/Areas/ContactUs/Scripts/SuccessfullSign.js"></script>
+
+
+
+
+
+
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,115 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+@model ResourceBox.Models.ViewModel
+<link rel="stylesheet" href="~/Content/about.css">
+
+<div class="row">
+    <div class="col">
+        <img class="img1" src="~/Media/Images/AboutUs/im1.jpg">
+    </div>
+</div>
+@foreach (var x in Model.AboutUs)
+{
+
+    <div class="container mt-5">
+        <div class="card" style="border:0px">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="~/Media/Images/AboutUs/com.png" class="img-fluid" alt="">
+                </div>
+                <div class="col-md-8">
+                    <h2 class="card-title mt-2 text-center">@x.storyHeader</h2>
+                    <p>
+                        <b>
+                            @x.story
+                        </b>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="our-team-text text-center">
+            <br>
+            <br>
+            <h1> Our Focus</h1><br><br><br>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-lg-4">
+                <div class="card mx-30">
+                    <img src="@Url.Content(x.focusImg1)" class="card-img-top" alt="">
+                    <div class="card-body">
+                        <div class="quality text-center"><h5>Quality</h5></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card mx-30">
+                    <img src="@Url.Content(x.focusImg2)" class="card-img-top" alt="">
+                    <div class="card-body">
+                        <div class="quality text-center"><h5>Development</h5></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card mx-30">
+                    <img src="@Url.Content(x.focusImg3)" class="card-img-top" alt="">
+                    <div class="card-body">
+                        <div class="quality text-center"><h5>Web Design</h5></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="our-team-area">
+            <div class="our-team-text text-center">
+                <br>
+                <br>
+                <h1>Meet Our team</h1><br><br><br>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="our-team-box">
+                            <img src="@Url.Content(x.aboutImg1)" style="height:425px;width:80%" alt="">
+                            <div class="icons">
+                                <a href="#"><i class="fab fa-facebook"></i></a>
+                                <a href="#"><i class="fab fa-youtube"></i></a>
+                                <a href="#"><i class="fab fa-github"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                            </div>
+                            <h4>Moniruzzaman Joy</h4>
+                            <p>Developer</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="our-team-box">
+                            <img src="@Url.Content(x.aboutImg2)" style="height:425px;width:80%" alt="">
+                            <div class="icons">
+                                <a href="#"><i class="fab fa-facebook"></i></a>
+                                <a href="#"><i class="fab fa-youtube"></i></a>
+                                <a href="#"><i class="fab fa-github"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                            </div>
+                            <h4>Umma Salma Anika</h4>
+                            <p>Developer</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="our-team-box">
+                            <img src="@Url.Content(x.aboutImg3)" style="height:425px;width:80%" alt="">
+                            <div class="icons">
+                                <a href="#"><i class="fab fa-facebook"></i></a>
+                                <a href="#"><i class="fab fa-youtube"></i></a>
+                                <a href="#"><i class="fab fa-github"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                            </div>
+                            <h4>Sadman Jahin</h4>
+                            <p>Developer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

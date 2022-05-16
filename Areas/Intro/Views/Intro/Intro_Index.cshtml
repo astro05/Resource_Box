@@ -1,0 +1,66 @@
+﻿@using React.Web.Mvc
+
+@{
+    Layout = null;
+}
+
+@*<h2>Index</h2>
+@Html.React("Hello", new
+{
+
+})
+*@
+
+
+
+    <html>
+    <head>
+        <title>Hello React</title>
+    </head>
+    <body>
+        <div id="content"></div>
+        <h1>Intro_Index</h1>
+        <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/16.13.0/umd/react.development.js"></script>
+        <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.13.0/umd/react-dom.development.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.7.1/remarkable.min.js"></script>
+      @*  <script src="@Url.Content("~/Areas/Intro/Scripts/Intro.jsx")"></script>-->*@
+      
+     @*   <meta http-equiv="refresh" content="1;Url=~/Areas/Intro/Scripts/HtmlPage1.html" />*@
+        @*<a href="@Url.Content("~/Areas/Intro/Scripts/loading.html")">Intro</a>*@
+    <lottie-player autoplay
+                   controls
+                   loop
+                   mode="normal"
+                   src="https://assets3.lottiefiles.com/packages/lf20_UJNc2t.json"
+                   style="width: 320px">
+    </lottie-player>
+
+    </body>
+    </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--@{
+    ViewBag.Title = "Intro Page";
+}
+
+    <h1 id="reactdiv"></h1>
+    <div>
+        <script src="~/Scripts/react/react.min.js"></script>
+        <script src="@Url.Content("~/Areas/Intro/Scripts/Intro.jsx")"></script>-->
+@* <a href="~/Scripts/JS/Intro.jsx">~/Scripts/JS/Intro.jsx</a>*@
+<!--<h1>this is ...</h1>
+</div>-->

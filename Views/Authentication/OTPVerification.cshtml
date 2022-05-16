@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "OTPVerification";
+}
+
+@Styles.Render("~/Content/css/login")
+
+
+
+<!-- partial:index.partial.html -->
+<div class="container c">
+    <div class="row" id="customForm">
+        <div class="col-md-3"></div>
+        <div class="ml-5 mt-4">
+
+
+            <form id="form" class="f mt-5" action="@Url.Action("OTPVerification", "Authentication")" method="post">
+
+                <div class="h3 mb-4 homeText" style="text-align: center; font-weight: bold;">Enter Your 6 Digit OTP Code <a class="ml-2" style="text-decoration:none;color:black;" href="#" data-toggle="popover" title="Help" data-content="An OTP Code has been sent to your Email. Check Your Email @ViewBag.Email"><i class="far fa-info-circle"></i></a></div>
+                <div class="h3 text-center" ><i class="far fa-lock-alt fa-4x"></i></div>
+                <div class="fm mt-4">
+                    <label for="Code">Enter Code Here</label>
+                    <input type="hidden" value="@ViewBag.Email" name="email" id="Code" />
+                    <input type="text" placeholder="6 Digit Code" name="otp" id="Code" />
+                    <i class="fas fa-check-circle"></i>
+                    <i class="fas fa-exclamation-circle"></i>
+                    <small>Error message</small>
+                </div>
+                <button class="btn btn-success">Confirm</button>
+                <div class="mt-2" style="text-align: center"> Didn't Find A Code ? <a href="@Url.Action("Login", "Authentication")" class="text-danger"> Resend</a> </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script>
+    $(function () {
+        $('[data-toggle="popover"]').popover();
+    })
+</script>

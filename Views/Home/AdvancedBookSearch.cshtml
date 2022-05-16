@@ -1,0 +1,503 @@
+﻿
+@{
+    ViewBag.Title = "AdvancedBookSearch";
+}
+
+<link rel="stylesheet" href="~/Content/custom-selectbar.css" />
+<link rel="stylesheet" href="~/Content/custom-checkbox.css" />
+<link rel="stylesheet" href="~/Content/custom-button.css" />
+
+
+@Styles.Render("~/Content/css/login")
+
+<div class="jumbotron big-banner" style="background:url('../../Media/Images/advancedsearch5.jpg') no-repeat;background-size:cover;height:auto;">
+    <div class="container mt-5" style="max-width:1200px;">
+        <form action="@Url.Action("ViewBook", "Resource")" method="post">
+            <h1 class="mb-5 homeHeading" style="text-align:center;"> Advanced Search</h1>
+            <input type="hidden" name="lattitude" id="lattitude" />
+            <input type="hidden" name="longitude" id="longitude" />
+            <input type="hidden" name="data" id="data-pass" />
+            <div class="row">
+
+                <div class="col-md-6 d-flex justify-content-center align-items-baseline">
+
+                    <div class="col-md-5">
+                        <h2>Choose Topic</h2>
+                    </div>
+                    <div class="select-box mt-4">
+                        <div class="options-container">
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="film" value="film" name="category" />
+                                <label for="film">Film & Animation</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="science" value="science" name="category" />
+                                <label for="science">Science & Technology</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="art" value="art" name="category" />
+                                <label for="art">Art</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="music" value="music" name="category" />
+                                <label for="music">Music</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="travel" value="travel" name="category" />
+                                <label for="travel">Travel & Events</label>
+                            </div>
+
+
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="news" value="news name="category" />
+                                <label for="news">News & Politics</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="tutorials" value="tutorials" name="category" />
+                                <label for="tutorials">Tutorials</label>
+                            </div>
+                        </div>
+
+                        <div class="selected">
+                            Select Educational Subject
+                        </div>
+
+                        <div class="search-box">
+                            <input type="text" placeholder="Start Typing..." />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 d-flex justify-content-center align-items-baseline">
+
+                    <div class="col-md-5">
+                        <h2>Choose Department</h2>
+                    </div>
+
+
+                    <div class="select-box mt-4">
+                        <div class="options-container">
+
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="ComputerScience" value="ComputerScience" name="department" />
+                                <label for="ComputerScience">Computer Science And Engineering</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="Electrical" value="Electrical" name="department" />
+                                <label for="Electrical">Electrical And Electronics Engineering</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="Civil" value="Civil" name="department" />
+                                <label for="Civil">Civil Engineering</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="mechanical" value="mechanical" name="department" />
+                                <label for="mechanical">Mechanical Production Enginnering</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="architecture" value="architecture" name="department" />
+                                <label for="architecture">Architecture</label>
+                            </div>
+
+
+
+                        </div>
+
+                        <div class="selected">
+                            Select Department
+                        </div>
+
+                        <div class="search-box">
+                            <input type="text" placeholder="Start Typing..." />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 d-flex justify-content-center align-items-center">
+
+                    <div class="col-md-5">
+                        <h2>Choose Semester</h2>
+                    </div>
+
+
+                    <div class="select-box mt-4" style="margin-right:0px;">
+                        <div class="options-container">
+
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="1.1" value="1.1" name="semester" />
+                                <label for="1.1">1.1</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="1.2" value="1.2" name="semester" />
+                                <label for="1.2">1.2</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="2.1" value="2.1" name="semester" />
+                                <label for="2.1">2.1</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="2.2" value="2.2" name="semester" />
+                                <label for="2.2">2.2</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="3.1" value="3.1" name="semester" />
+                                <label for="3.1">3.1</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" id="3.2" value="3.2" name="semester" />
+                                <label for="3.2">3.2</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" id="4.1" value="4.1" name="semester" />
+                                <label for="4.1">4.1</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" id="4.2" value="4.2" name="semester" />
+                                <label for="4.2">4.2</label>
+                            </div>
+
+
+
+                        </div>
+
+                        <div class="selected">
+                            Select Semester
+                        </div>
+
+                        <div class="search-box">
+                            <input type="text" placeholder="Start Typing..." />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 d-flex justify-content-center align-items-center">
+
+
+                    <div class="col-md-5">
+                        <h2>Choose Subject</h2>
+                    </div>
+
+                    <div class="select-box mt-4">
+                        <div class="options-container">
+
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="DataStructure" value="DataStructure" name="subject" />
+                                <label for="DataStructure">Data Structure</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="Microcontroller" value="Microcontroller" name="subject" />
+                                <label for="Microcontroller">Microcontroller</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="C" value="C" name="subject" />
+                                <label for="C">C</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="Java" value="Java" name="subject" />
+                                <label for="Java">Java</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="ComputerArchitecture" value="ComputerArchitecture" name="subject" />
+                                <label for="ComputerArchitecture">Computer Architecture</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="Algorithm" value="Algorithm" name="subject" />
+                                <label for="Algorithm">Algorithm</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" id="Software" value="Software" name="subject" />
+                                <label for="Software">Software Design</label>
+                            </div>
+
+
+
+                        </div>
+
+                        <div class="selected">
+                            Select Subject Category
+                        </div>
+
+                        <div class="search-box">
+                            <input type="text" placeholder="Start Typing..." />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 d-flex justify-content-center align-items-center mt-3">
+
+                    <div class="col-md-5">
+                        <h2>Choose City</h2>
+                    </div>
+
+
+                    <div class="select-box mt-4">
+                        <div class="options-container">
+
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="Dhaka" value="Dhaka" name="city" />
+                                <label for="Dhaka">Dhaka</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="Rajshahi" value="Rajshahi" name="city" />
+                                <label for="Rajshahi">Rajshahi</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="Barishal" value="Barishal" name="city" />
+                                <label for="Barishal">Barishal</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="Syhlet" value="Syhlet" name="city" />
+                                <label for="Syhlet">Syhlet</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="Chittagong" value="Chittagong" name="city" />
+                                <label for="Chittagong">Chittagong</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="Khulna" value="Khulna" name="city" />
+                                <label for="Khulna">Khulna</label>
+                            </div>
+
+
+                        </div>
+
+                        <div class="selected">
+                            Choose City
+                        </div>
+
+                        <div class="search-box">
+                            <input type="text" placeholder="Start Typing..." />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 d-flex justify-content-center align-items-center mt-3">
+
+                    <div class="col-md-5 ">
+                        <h2>Choose Area</h2>
+                    </div>
+
+
+                    <div class="select-box mt-4">
+                        <div class="options-container">
+
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="Moghbazar" value="Moghbazar" name="Area" />
+                                <label for="Moghbazar">Moghbazar</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="Malibagh" value="Moghbazar" name="Area" />
+                                <label for="Malibagh">Malibagh</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="Rajarbagh" value="Moghbazar" name="Area" />
+                                <label for="Rajarbagh">Rajarbagh</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="Uttara" value="Moghbazar" name="Area" />
+                                <label for="Uttara">Uttara</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="Mohakhali" value="Moghbazar" name="Area" />
+                                <label for="Mohakhali">Mohakhali</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="Badda" value="Moghbazar" name="Area" />
+                                <label for="Badda">Badda</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" id="Rampura" value="Moghbazar" name="Area" />
+                                <label for="Rampura">Rampura</label>
+                            </div>
+                        </div>
+
+                        <div class="selected">
+                            Select Area
+                        </div>
+
+                        <div class="search-box">
+                            <input type="text" placeholder="Start Typing..." />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 d-flex justify-content-center align-items-center mt-3">
+
+                    <div class="page__section page__custom-settings">
+
+                        <div class="page__toggle">
+                            <label class="toggle">
+                                <input class="toggle__input" type="checkbox" id="somethng" onclick="ShowHideDiv(this); getLocation()" id="checkBox">
+                                <span class="toggle__label">
+                                    <span class="toggle__text">Search From My Nearest Location</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-6  justify-content-center align-items-center mt-3" id="divDistance" style="display:none">
+
+                    <div class="col-md-5">
+                        <h2>Choose Distance</h2>
+                    </div>
+
+
+                    <div class="select-box mt-4">
+                        <div class="options-container">
+
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="1KM" value="1" name="distance" />
+                                <label for="1KM">1KM</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="2KM" value="2" name="distance" />
+                                <label for="2KM">2KM</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="3KM" value="3" name="distance" />
+                                <label for="3KM">3KM</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="4KM" value="4" name="distance" />
+                                <label for="4KM">4KM</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="5KM" value="5" name="distance" />
+                                <label for="5KM">5KM</label>
+                            </div>
+
+                        </div>
+
+                        <div class="selected">
+                            Area range you want to cover
+                        </div>
+
+                        <div class="search-box">
+                            <input type="text" placeholder="Start Typing..." />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 mt-5 ml-4" align="center">
+                    <div id="buttoncontainer">
+                        <button class="learn-more bg-dark text-white">Search   <i class="fas fa-search"></i></button>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+        </form>
+    </div>
+ </div>
+
+
+
+    <script src="~/Scripts/custom-selectbar.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        var array = [];
+        var x = document.getElementById("demo");
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        function showPosition(position) {
+            //x.innerHTML = "Latitude: " + position.coords.latitude +
+            //"<br>Longitude: " + position.coords.longitude;
+
+            var apikey = 'c1e72ba1314f41719598a10e23f3f7dd';
+            var latitude = '23.7578939';
+            var longitude = '90.4119041';
+
+            var api_url = 'https://api.opencagedata.com/geocode/v1/json'
+
+            var request_url = api_url
+                + '?'
+                + 'key=' + apikey
+                + '&q=' + encodeURIComponent(position.coords.latitude + ',' + position.coords.longitude)
+                + '&pretty=1'
+                + '&no_annotations=1';
+            //x.innerHTML=request_url;
+            $.get({
+                url: request_url,
+                success: function (data) {
+                    console.log(data);
+
+                    array.push(data.results[0].formatted);
+                    x.innerHTML = data.results[0].formatted;
+                }
+
+
+            });
+
+            var lat = position.coords.latitude;
+            var long = position.coords.longitude;
+            document.getElementById("lattitude").value = lat;
+            document.getElementById("longitude").value = long;
+
+
+        }
+    </script>
+    <script>
+        function search() {
+
+            document.getElementById("data-pass").value = array;
+            document.getElementById("myForm").submit();
+
+        }
+
+    </script>
+    <script type="text/javascript">
+        function ShowHideDiv(checkLocation) {
+            var dvPassport = document.getElementById("divDistance");
+            dvPassport.style.display = checkLocation.checked ? "flex" : "none";
+        }
+    </script>

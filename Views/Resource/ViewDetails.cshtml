@@ -1,0 +1,288 @@
+﻿
+@{
+    ViewBag.Title = "ViewDetails";
+}
+@model ResourceBox.Models.ViewModel
+
+<link rel="stylesheet" href="~/Content/details.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
+<div class="container c ">
+
+
+    <form id="form" class="f mt-5" action="@Url.Action("Login", "Authentication")" method="post">
+        <div class="h2 mb-5 homeHeading" style="text-align: center; font-weight: bold; font-size:35px;">Item Details</div>
+        @foreach (var book in Model.Books)
+        {
+            <div class="row">
+                <div class="col-md-6" align="center">
+                    <img class="" src="@Url.Content(book.bookImage)" style="width:auto;height:300px;" />
+                </div>
+                <div class="col-md-6 mt-lg-0 mt-5 d-flex justify-content-center align-items-center">
+                    <div>
+                        <p class="h4 homeText">Book Name : @book.bookName</p>
+                        <p class="h4 homeText">Book Category: @book.bookCategory</p>
+                        <p class="h4 homeText">Book Author: @book.bookAuthor</p>
+                        <p class="h4 homeText">Book Department: @book.department</p>
+                        @foreach (var user in Model.Users.Where(i => i.userId == book.userIdFK))
+                        {
+                            <p class="h4 homeText">Book Posted By: @user.userName</p>
+                            <script>
+                                var recipient ="@user.userName";
+                                var recipientId =@user.userId;
+                            </script>
+                        }
+                        @foreach (var location in Model.Locations.Where(i => i.locationId == book.locationIdFK))
+                        {
+                            <p class="h4 homeText">Location: @location.area</p>
+                            <script>
+
+                    var destinationLattitude =@location.lattitude;
+                    var destinationLongitude =@location.longitude;
+                    var destinationName = "@location.area";
+                            </script>
+                        }
+                        @if (Convert.ToInt32(Session["userId"]) != book.userIdFK)
+                        {
+                            <button id="request" style="display:inline;" class="my-2 mr-2  btn btn-primary" type="button" onclick="makeRequest()"><b id="requestText">Add To WishList </b><i class="fas fa-shopping-cart" id="requestButton"></i></button>
+                            <button id="requestsuccess" style="display:none" class="my-2 mr-2  btn btn-success" type="button"><i class="fas fa-check" id="requestButton"></i></button>
+                            <button class="my-2 ml-2 btn btn-dark" type="button" id="modalButton" data-toggle="modal" data-target="#exampleModal"><b>Ask Seller Anything </b><i class="fas fa-envelope"></i></button>
+                        }
+
+                        <div id="accordion" role="tablist">
+                            <a data-toggle="collapse" class="mt-4 h5 text-primary homeText" href="#directionMap">See Direction On The Map</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="container collapse show" id="directionMap" data-parent="#accordion">
+            <div class="h3 mt-5 homeText text-center" id="navigation"></div>
+            <div class="mt-3" id='map' style='width: 100%; height:530px;'></div>
+            <div class="mt-3" id='map2' style='width: 100%; height:530px;'></div>
+            <p id="scroll"></p>
+        </div>
+
+
+    </form>
+    
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="messageHeader">New message to</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="messageForm" action="@Url.Action("UserMessage","User")" method="post">
+                        <input id="senderId" value="@Convert.ToInt32(Session["userId"])" name="SenderId" hidden />
+                        <input id="recieverId" value="" name="RecieverId" hidden />
+                        <input id="reloadState" value="2" name="reloadState" hidden />
+                        <input id="selectedId" value="" name="SelectedId" hidden />
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Recipient:</label>
+                            <input type="text" class="form-control" value="" id="recipient-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Message:</label>
+                            <textarea class="form-control" id="message-text" name="message"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="send();">Send message</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+   
+    document.getElementById("directionMap").classList.remove("show");
+   
+</script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
+<script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-map.js?key=iVThT3KOEDgdJUFEzXG24HzVJlSLjR6o"></script>
+<script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-routing.js?key=iVThT3KOEDgdJUFEzXG24HzVJlSLjR6o"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+
+   
+   
+    var header = document.getElementById("messageHeader");
+    document.getElementById("recipient-name").disabled = true;
+    document.getElementById("recipient-name").value = recipient;
+    document.getElementById("recieverId").value = recipientId;
+    document.getElementById("selectedId").value = recipientId;
+    header.innerHTML ="New message to "+ recipient
+
+    function send() {
+        document.getElementById("messageForm").submit();
+    }
+</script>
+
+<script>
+
+    
+    $(window).scroll(function () {
+        //You've scrolled this much:
+        //$('#scroll').text("You've scrolled " + $(window).scrollTop() + " pixels");
+        if ($(window).scrollTop() > 481) {
+            document.getElementById("map").style.display = "none";
+            document.getElementById("map2").style.display = "block";
+        }
+        else {
+            document.getElementById("map").style.display = "block";
+            document.getElementById("map2").style.display = "none";
+        }
+    });
+    var element = document.getElementById("map");
+    var rect = element.getBoundingClientRect();
+    console.log(rect.top, rect.right, rect.bottom, rect.left);
+</script>
+
+<script>
+   
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+  
+
+    function showPosition(position) {
+        position.enableHighAccuracy = true;
+        var currentLatitude = position.coords.latitude;
+        var currentLongitude = position.coords.longitude;
+        var apikey = 'c1e72ba1314f41719598a10e23f3f7dd';
+        var latitude = '51.0';
+        var longitude = '7.0';
+
+        var api_url = 'https://api.opencagedata.com/geocode/v1/json'
+
+        var request_url = api_url
+            + '?'
+            + 'key=' + apikey
+            + '&q=' + encodeURIComponent(position.coords.latitude + ',' + position.coords.longitude)
+            + '&pretty=1'
+            + '&no_annotations=1';
+        //x.innerHTML=request_url;
+        $.get({
+            url: request_url,
+            success: function (data) {
+                console.log(data);
+                var currentName = data.results[0].formatted.split(",");
+                var mapHeading = 'Navigation from ' + destinationName + 'To Your Location: ' + currentName[currentName.length - 3];
+                document.getElementById("navigation").innerHTML = mapHeading;
+            }
+        })
+       
+        document.getElementById("directionMap").classList.add("show");
+        callMap(currentLatitude, currentLongitude);
+        callMap2(currentLatitude, currentLongitude);
+    }
+</script>
+
+<script type="text/javascript">
+
+    function callMap(currentLatitude, currentLongitude) {
+    var map;
+    var dir;
+
+    map = L.map('map', {
+        layers: MQ.mapLayer(),
+        center: [38.895345, -77.030101],
+        zoom: 15
+    });
+
+    dir = MQ.routing.directions();
+
+    dir.route({
+        locations: [
+            destinationLattitude+","+destinationLongitude,
+            currentLatitude + "," + currentLongitude
+        ]
+    });
+
+    map.addLayer(MQ.routing.routeLayer({
+        directions: dir,
+        fitBounds: true
+    }));
+    }
+</script>
+<script type="text/javascript">
+
+    function callMap2(currentLatitude, currentLongitude) {
+        var map2;
+        var dir2;
+
+        map2 = L.map('map2', {
+            layers: MQ.mapLayer(),
+            center: [38.895345, -77.030101],
+            zoom: 15,
+            zoomControl: false
+        });
+
+        dir2 = MQ.routing.directions();
+
+        dir2.route({
+            locations: [
+                destinationLattitude + "," + destinationLongitude,
+                currentLatitude + "," + currentLongitude
+            ]
+        });
+
+        map2.addLayer(MQ.routing.routeLayer({
+            directions: dir2,
+            fitBounds: true
+        }));
+        
+        var element = document.getElementById("directionMap");
+        element.classList.remove("show");
+    }
+    
+</script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+    function makeRequest() {
+        var btnRequest = document.getElementById("requestButton");
+        btnRequest.classList.remove("fas");
+        btnRequest.classList.remove("fa-shopping");
+        btnRequest.classList.add("fa");
+        btnRequest.classList.add("fa-spinner");
+        btnRequest.classList.add("fa-spin");
+        btnRequest.classList.add("fa-lg");
+        document.getElementById("requestText").innerHTML = "";
+        setTimeout(function () {
+            document.getElementById("request").style.display = "none";
+            document.getElementById("requestsuccess").style.display = "inline"; }, 1000);
+        alertSuccess();
+
+    }
+    function alertSuccess() {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'bottom-start',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: false,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        Toast.fire({
+            icon: 'success',
+            title: 'Successfully Requested'
+        })
+    }
+</script>

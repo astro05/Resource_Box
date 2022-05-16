@@ -1,0 +1,65 @@
+/*@import url("https://fonts.googleapis.com/css?family=Amatic+SC");*/
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@800&display=swap");
+
+body {
+    background-color: #ffde6b;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+#loading_tag {
+    position: relative;
+    margin: 0 auto;
+    top: 20vh;
+    width: 100vw;
+    text-align: center;
+    font-family: 'Baloo Da 2';
+    font-size: 9vh;
+    color: #333;
+    opacity: 1;
+    animation: pulse 2.5s linear infinite;
+}
+
+
+#animContainer {
+    position: relative;
+    margin: 0 auto;
+    top: 20vh;
+    width: 50%;
+    height: 50%;
+    overflow: hidden;
+}
+
+
+@keyframes pulse {
+  0% {
+    transform: scale(1, 1);
+    opacity: .25;
+  }
+  50% {
+    transform: scale(1.2, 1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1, 1);
+    opacity: .25;
+  }
+}
+@keyframes fadeout{
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+
+
+#preload {
+    background: #f2994a; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #F2994A, #F2C94C ); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #F2994A, #F2C94C ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top =0;
+    left: 0;
+    z-index: 1;
+}

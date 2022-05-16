@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "Terms&Condition";
+}
+@model ResourceBox.Models.ViewModel
+<link rel="stylesheet" href="~/Content/termscondition.css">
+@foreach (var t in Model.TermsAndCondition)
+{
+    <div class="slant">
+        <br><h1>@t.termsHeader</h1>
+        <div class="slantdiv">
+
+        </div>
+    </div>
+    <div class="container">
+        <div class="peradiv">
+            <p><b style="font-size:30px">@t.heading1</b><br><br>@t.description1</p>
+        </div>
+    </div>
+
+    <div class="slant2">
+        <div class="t1"><br><br><h3>@t.heading2</h3></div>
+        <div class="container mt-0 pt-0">
+            <br><p>@t.description2</p>
+        </div>
+        <div class="slantdiv2">
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="peradiv">
+            <p><b style="font-size:30px">@t.heading3</b><br><br>@t.description3</p>
+        </div>
+    </div>
+
+    <div class="slant3">
+        <div class="t1"><br><br><h3>@t.heading4</h3></div>
+        <div class="container mt-0 pt-0">
+            <br><p>@t.description4</p>
+        </div>
+        <div class="slantdiv3">
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="peradiv">
+            <p>
+                <b style="font-size:30px">@t.heading5</b><br><br>@t.description5
+            </p>
+        </div>
+    </div>
+
+    <div class="slant4">
+        <div class="t1"><br><br><h3>@t.heading6</h3></div>
+        <div class="container mt-0 pt-0">
+            <br><p>@t.description6</p>
+        </div>
+        <div class="slantdiv4">
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="peradiv">
+            <p>
+                <b style="font-size:30px">Discount Conditions</b><br><br>
+                Resourcebox always wants to give you your desired books in the best possible price. We always have different offers and discounts running on to make our customers happy and make them able to buy more and more books from Resourcebox. But sometimes in some cases we can not afford to give you proper discounts. Though we try our best to keep the price lesser for our beloved customers but sometimes we just can't. We can not give discounts for the foreign books because their publishers don't allow us to give any discounts at all.
+                Resourcebox is always there for you.
+            </p>
+        </div>
+    </div>
+}
+
+
+

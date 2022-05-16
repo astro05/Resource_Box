@@ -1,0 +1,66 @@
+.plusImage{
+width:100%; 
+filter: opacity(50%); 
+
+}
+
+.plusImage:hover{
+filter: opacity(100%); 
+
+}
+
+.buttonEdit {
+
+  border: none;
+  outline: 0;
+  padding: 8px;
+  color: white;
+  background-color:#5cb85c  ;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+.buttonDelete {
+
+  border: none;
+  outline: 0;
+  padding: 8px;
+  color: white;
+  background-color: #C9151B;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+.buttonOpen {
+
+  border: none;
+  outline: 0;
+  padding: 8px;
+  color: white;
+  background-color: #0275d8 ;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+.statusBar{
+ margin-left: 80px;
+}
+
+@media screen and (max-width: 992px) and (min-width: 100px) {
+.statusBar{
+margin-top:70px;
+margin-right: 55px;
+}
+}
+@media screen and (max-width: 1300px) and (min-width: 992px) {
+.statusBar{
+margin-top:50px;
+margin-left: 150px;
+}
+}
+

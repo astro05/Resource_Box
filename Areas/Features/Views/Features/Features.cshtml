@@ -1,0 +1,371 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<!doctype html>
+<html lang="en">
+<head>
+   
+
+    <!-- Bootstrap CSS (css/bootstrap) -->
+   
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800">
+    <link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+    <script src="~/Scripts/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+
+
+    <!--  ......................... -->
+    <!-- Custom CSS (css\custom) -->
+
+    <link rel="stylesheet" href="~/Content/custom/home.css">
+    <link rel="stylesheet" href="~/Content/custom/aos.css">
+
+
+    <!--  ......................... -->
+    <!-- <meta http-equiv="refresh" content="2; url=loading.html" -->
+
+    <title>Features</title>
+
+</head>
+
+
+
+<body>
+
+    <div class="section-0">
+
+        <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="1" class="active"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="2" class="active"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active" data-interval="2000">
+                    <div id="share_moneybooks"></div>
+                    @*  <img src="~/Media/Images/Features/test.jpg" class="d-block w-100" alt="...">*@
+                    <div class="carousel-caption d-none d-md-block">
+                        <h2 style="color:dimgrey; font-weight:bolder;">Share Your Resource</h2>
+                        <p style="color:black;font-size:20px;">Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    </div>
+                </div>
+                <div class="carousel-item" data-interval="3000">
+                    <div id="Features_info"></div>
+                    <div class="carousel-caption d-none d-md-block">
+                        <h2 style="color:dimgrey; font-weight:bolder;">Communication & Connectivity</h2>
+                        <p style="color:black;font-size:20px;">Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    </div>
+                </div>
+                <div class="carousel-item" data-interval="2000">
+                    <div id="Features_newton_cradle"></div>
+                    <div class="carousel-caption d-none d-md-block">
+                        <h2 style="color:dimgrey; font-weight:bolder;">Collaborate Your Idea</h2>
+                        <p style="color:black;font-size:20px;">Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+
+    </div>
+
+    <main>
+        <section class="section-1">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-md-6 col-12" data-aos="fade-right"
+                         data-aos-offset="300"
+                         data-aos-easing="ease-in-sine">
+                        <div class="pray">
+
+                            @*  <img src="~/Media/Images/Features/t1.gif">*@
+                            <div id="Features_marketing_digital"></div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12" data-aos="fade-left"
+                         data-aos-offset="300"
+                         data-aos-easing="ease-in-sine">
+                        <div class="panel text-left">
+                            <h1><?php echo $text[5] ? $text[5] : "Lifey"; ?></h1>
+                            <p class="pt-4">
+                                "Lifey has several possible meanings - As an adjective, it means to be full of life, spirited (Merriam-Webster Dictionary) As a noun: a video selfie of one's life.";
+                            </p>
+                            <p data-aos="fade-zoom-in"
+                               data-aos-easing="ease-in-back"
+                               data-aos-delay="600"
+                               data-aos-offset="0">
+                                "Lifey has several possible meanings - As an adjective, it means to be full of life, spirited (Merriam-Webster Dictionary) As a noun: a video selfie of one's life.";
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="section-2 container-fluid p-0" style="overflow-y: hidden">
+            <div class="cover">
+                <div class="overlay"></div>
+                <div class="content text-center" data-aos="zoom-out">
+                    <h1> "Our registered Clint"</h1>
+                    <p>
+                       "it means to be full of life"
+                    </p>
+                </div>
+            </div>
+            <div class="container-fluid text-center">
+                <div class="numbers d-flex flex-md-row flex-wrap justify-content-center">
+                    <div class="rect">
+                        <h1>@ViewBag.MemberCount</h1>
+                        <p>Member</p>
+                    </div>
+                    <div class="rect">
+                        <h1>@ViewBag.PostCount</h1>
+                        <p>Post & Share</p>
+                    </div>
+                    <div class="rect">
+                        <h1>121</h1>
+                        <p>Institution</p>
+                    </div>
+                    <div class="rect">
+                        <h1>1945</h1>
+                        <p>Visitors</p>
+                    </div>
+                </div>
+            </div>
+
+
+        
+        </section>
+        <section class="section-3 container-fluid p-0 text-center">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <h1>"Download Our App"</h1>
+                    <p>
+                        "Lifey has several possible meanings - As an adjective, it means to be full of life, spirited (Merriam-Webster Dictionary) As a noun: a video selfie of one's life."
+                    </p>
+                </div>
+            </div>
+            <div class="platform row">
+                <div class="col-md-4 col-sm-12 text-center" data-aos="flip-left"
+                     data-aos-easing="ease-out-cubic"
+                     data-aos-duration="2000">
+                    <div class="desktop shadow-lg">
+                        <div class="d-flex flex-row justify-content-center">
+                            <i class="fas fa-desktop fa-3x py-2 pr-3"></i>
+                            <div class="text text-left">
+                                <h3 class="pt-1 m-0">Desktop</h3>
+                                <p class="p-0 m-0">On website</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12 text-center" data-aos="flip-up"
+                     data-aos-easing="ease-out-cubic"
+                     data-aos-duration="2000">
+                    <div class="desktop shadow-lg">
+                        <div class="d-flex flex-row justify-content-center">
+                            <i class="fas fa-mobile-alt fa-3x py-2 pr-3"></i>
+                            <div class="text text-left">
+                                <h3 class="pt-1 m-0">On Mobile</h3>
+                                <p class="p-0 m-0">On Play Store</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12 text-center" data-aos="flip-right"
+                     data-aos-easing="ease-out-cubic"
+                     data-aos-duration="2000">
+                    <div class="desktop shadow-lg">
+                        <div class="d-flex flex-row justify-content-center">
+                            <i class="fas fa-mobile-alt fa-3x py-2 pr-3"></i>
+                            <div class="text text-left">
+                                <h3 class="pt-1 m-0">On Iphone</h3>
+                                <p class="p-0 m-0">On App Store</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4 -->
+        <section class="section-4">
+            <div class="container text-center">
+                <h1 class="text-dark">"What our Clint Say about us";</h1>
+                <p class="text-secondary">"Lifey has several possible meanings"</p>
+            </div>
+            <div class="team row ">
+                <div class="col-md-4 col-12 text-center">
+                    <div class="card mr-2 d-inline-block shadow-lg">
+                        <div class="card-img-top">
+                            <img src="../../media/Images/Users/1.jpg" class="img-fluid border-radius p-4" alt="">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">"Dr.Strange"</h3>
+                            <p class="card-text">
+                                "Lifey has several possible meanings - As an adjective, it means to be full of life, spirited (Merriam-Webster Dictionary) As a noun: a video selfie of one's life."
+                            </p>
+                            <a href="#" class="text-secondary text-decoration-none">"MBBS FCPS"</a>
+                            <p class="text-black-50">"DHAKA MEDICAL" </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-12">
+                    <div id="carouselExampleControls" class="carousel slide " data-ride="carousel">
+                        <div class="carousel-inner text-center">
+                            <div class="carousel-item active">
+                                <div class="card mr-2 d-inline-block shadow">
+                                    <div class="card-img-top">
+                                        <img src="../../media/Images/Users/default.png" class="img-fluid rounded-circle w-50 p-4" alt="">
+                                    </div>
+                                    <div class="card-body">
+                                        <h3 class="card-title">"Vision"</h3>
+                                        <p class="card-text">
+                                           "Lifey has several possible meanings - As an adjective, it means to be full of life, spirited (Merriam-Webster Dictionary) As a noun: a video selfie of one's life."
+                                        </p>
+                                        <a href="#" class="text-secondary text-decoration-none">"Cancer"</a>
+                                        <p class="text-black-50">"Noakhali"</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="card  d-inline-block mr-2 shadow">
+                                    <div class="card-img-top">
+                                        <img src="../../media/Images/Features/user_default.png" class="img-fluid rounded-circle w-50 p-4" alt="">
+                                    </div>
+                                    <div class="card-body">
+                                        <h3 class="card-title">"Wanda"</h3>
+                                        <p class="card-text">
+                                            "Lifey has several possible meanings - As an adjective, it means to be full of life, spirited (Merriam-Webster Dictionary) As a noun: a video selfie of one's life."
+                                        </p>
+                                        <a href="#" class="text-secondary text-decoration-none">"Tummy sickness"</a>
+                                        <p class="text-black-50">"Cumilla"</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-12 text-center">
+                    <div class="card mr-2 d-inline-block shadow-lg">
+                        <div class="card-img-top">
+                            <img src="../../media/Images/Users/3.jpg" class="img-fluid border-radius p-4" alt="">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">"Eren Yeager"</h3>
+                            <p class="card-text">
+                                "Lifey has several possible meanings - As an adjective, it means to be full of life, spirited (Merriam-Webster Dictionary) As a noun: a video selfie of one's life."
+                            </p>
+                            <a href="#" class="text-secondary text-decoration-none">"Eren"</a>
+                            <p class="text-black-50">"Under Cover Agent"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+
+
+    <!-- ............................................................................................ -->
+    <!-- ................CUSTOM SCRIPT................... -->
+
+    <script src="~/Scripts/JS/lottie.min.js"></script>
+    <script src="~/Areas/Features/Scripts/marketing_digital.js"></script>
+    <script src="~/Areas/Features/Scripts/share_moneybooks.js"></script>
+    <script src="~/Areas/Features/Scripts/info.js"></script>
+    <script src="~/Areas/Features/Scripts/newton_cradle.js"></script>
+
+    <!-- home page effect -->
+    <script>
+
+
+
+        let navbar = $(".navbar");
+
+        $(window).scroll(function () {
+            // get the complete hight of window
+            let oTop = $(".section-2").offset().top - window.innerHeight;
+            if ($(window).scrollTop() > oTop) {
+                navbar.addClass("sticky");
+            } else {
+                navbar.removeClass("sticky");
+            }
+        });
+
+
+        let nCount = selector => {
+            $(selector).each(function () {
+                $(this)
+                    .animate({
+                        Counter: $(this).text()
+                    }, {
+
+                        duration: 4000,
+
+                        easing: "swing",
+
+                        step: function (value) {
+                            $(this).text(Math.ceil(value));
+                        }
+                    });
+            });
+        };
+
+        let a = 0;
+        $(window).scroll(function () {
+            let oTop = $(".numbers").offset().top - window.innerHeight;
+            if (a == 0 && $(window).scrollTop() >= oTop) {
+                a++;
+                nCount(".rect > h1");
+            }
+        });
+
+
+
+
+
+    </script>
+
+
+
+
+    <!--AOS animate -->
+    <script>
+        AOS.init();
+
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "integrated",
+  "version": "1.0.0",
+  "description": "React Integrated with ASP.NET",
+  "main": "app.js",
+  "scripts": {
+    "webpack": "webpack"
+  },
+  "author": "Sadman Jahin",
+  "license": "MIT",
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "webpack": "^3.10.0"
+  }
+}

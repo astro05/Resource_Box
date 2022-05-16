@@ -1,0 +1,159 @@
+﻿@model ResourceBox.Models.ViewModel
+@{
+    ViewBag.Title = "ViewPost";
+}
+
+<link rel="stylesheet" href="~/Content/custom-post.css" />
+@Styles.Render("~/Content/css/profile")
+<style>
+    #clock {
+        background-image: url('');
+        background-size: cover;
+        background-position: center;
+        height: 150px;
+        width: 150px;
+        border: 1px solid #bbb;
+    }
+</style>
+<div class="container-fluid mt-3" id="postContainer">
+    <div class="row ">
+        <div class=" col-lg-3">
+            <div class="list-group" id="categoryList">
+                <a href="#" style="text-decoration: none;" class="list-group-item list-group-item list-group-item-dark" onclick="loadPage('');">All Post</a>
+                <a href="#" style="text-decoration: none;" class="list-group-item list-group-item-dark" onclick="loadPage('HelpPost');">Help Post</a>
+                <a href="#" style="text-decoration: none;" class="list-group-item list-group-item-dark" onclick="loadPage('Article');">Articles</a>
+               
+
+            </div>
+        </div>
+        <div class=" col-lg-7 statusBar ">
+            <p class="h2 mt-4 mb-4" style="text-align: center;font-weight: bold;">@ViewBag.postType</p>
+            <div class="row">
+
+                @foreach (var posts in Model.Posts)
+                {
+                    DateTime currentTime = DateTime.Now;
+                    DateTime postedTime = Convert.ToDateTime(posts.date_time);
+                    int days = Convert.ToInt32(currentTime.Subtract(postedTime).TotalDays);
+                    int hour = Convert.ToInt32(currentTime.Subtract(postedTime).TotalHours);
+                    int minutes = Convert.ToInt32(currentTime.Subtract(postedTime).TotalMinutes);
+                    int seconds = Convert.ToInt32(currentTime.Subtract(postedTime).TotalSeconds);
+                    <div class="f-card mt-4" style="width:100%;">
+                        @foreach (var user in Model.Users.Where(i => i.userId == posts.userId))
+                        {
+                            <div class="header">
+                                <div class="options"><i class="fa fa-chevron-down"></i></div>
+                                <img class="co-logo rounded-circle" src="@Url.Content(user.image)" />
+                                <div class="co-name"><a href="#">@user.userName</a></div>
+                                @if (days >= 1)
+                                {
+                                    <div class="time"><a href="#">@days Days</a> · <i class="fa fa-globe"></i></div>
+                                }
+                                else if (hour >= 1)
+                                {
+                                    <div class="time"><a href="#">@hour Hours</a> · <i class="fa fa-globe"></i></div>
+                                }
+                                else if (minutes >= 1)
+                                {
+                                    <div class="time"><a href="#">@minutes Minutes</a> · <i class="fa fa-globe"></i></div>
+                                }
+                                else
+                                {
+                                    <div class="time"><a href="#">@seconds seconds</a> · <i class="fa fa-globe"></i></div>
+                                }
+
+                            </div>
+                        }
+                        <div class="content">
+                            <p class="h6 ml-1">@posts.post </p>
+                        </div>
+
+                        <div class="reference">
+                            @if (posts.postImage != "")
+                            {
+                                <img class="reference-thumb" src="@Url.Content(posts.postImage)" />
+
+                            }
+                            @if (posts.file != "")
+                            {
+                                String[] getFileName = posts.file.Split('/');
+                                <div class="reference-content">
+                                    <div class="reference-title">Attachment</div>
+                                    <div class="reference-subtitle"><a href="@Url.Content(posts.file)" target="_blank" style="text-decoration:none">@getFileName[getFileName.Length - 1]</a>  </div>
+                                    <div class="reference-font">PDF</div>
+                                </div>
+                            }
+
+                        </div>
+                        <div class="social mt-4">
+                            <div class="social-content"></div>
+                            <div class="social-buttons">
+                                <span><i class="fas fa-heart fa-lg text-danger"></i> 8 </span>
+                                <span> <i class="fas fa-thumbtack fa-lg"></i> 2</span>
+                                <span><i class="fas fa-thumbs-down fa-lg text-info"></i> 1</span>
+                                @if (posts.userId != Convert.ToInt32(Session["userId"]))
+                                {
+                                    <span class="float-right"><i class="fa fa-comment fa-lg text-warning"></i>Send Message</span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                }
+
+
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+
+
+</div>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+    function loadPage(postType) {
+        document.getElementById("postContainer").classList.add("blur");
+        let timerInterval
+        Swal.fire({
+            title: 'Wait!',
+            html: '',
+            timer: 800,
+            timerProgressBar: true,
+            didOpen: () => {
+                Swal.showLoading()
+                timerInterval = setInterval(() => {
+                    const content = Swal.getContent()
+                    if (content) {
+                        const b = content.querySelector('b')
+                        if (b) {
+
+                        }
+                    }
+                }, 100)
+            },
+            willClose: () => {
+                clearInterval(timerInterval)
+            }
+        }).then((result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+                var datastring = "postType=" + postType ;
+                $.ajax({
+                    type: "get",
+                    url: "ViewPost",
+                    data: datastring,
+                    success: function ($data) {
+                        $("#show_stored_data").html($data);
+                    }
+                });
+            }
+        })
+    }
+
+    
+
+</script>

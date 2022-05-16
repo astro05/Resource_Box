@@ -1,0 +1,202 @@
+﻿@model ResourceBox.Models.ViewModel
+@{
+    ViewBag.Title = "PostStatus";
+}
+<link  rel="stylesheet" href="~/Content/custom-post.css"/>
+@Styles.Render("~/Content/css/profile")
+<style>
+    #clock {
+        background-image: url('');
+        background-size: cover;
+        background-position: center;
+        height: 150px;
+        width: 150px;
+        border: 1px solid #bbb;
+    }
+</style>
+<div class="container-fluid mt-3">
+    <div class="row ">
+        <div class=" col-lg-3">
+            <div class="list-group" id="categoryList">
+                <a href="" style="text-decoration: none;" class="list-group-item list-group-item list-group-item-dark">My Profile</a>
+                <a href="" style="text-decoration: none;" class="list-group-item list-group-item-dark">My Sell Posts</a>
+                <a href="" style="text-decoration: none;" class="list-group-item list-group-item-dark">Profile Settings</a>
+                <a href="@Url.Action("ViewPost", "Resource",new { postType="HelpPost"})" style="text-decoration: none;" class="list-group-item list-group-item-dark">My Messeages </a>
+
+            </div>
+        </div>
+        <div class=" col-lg-7 statusBar ">
+            <p class="h2 mt-4 mb-4" style="text-align: center;font-weight: bold;">My Profile</p>
+            <div class="row">
+
+                <div class="card mt-2" id="post" style="width:92%;">
+                    <form id="myForm" action="@Url.Action("PostStatus", "User")" method="post" enctype="multipart/form-data">
+                        <div class="card-header" style="height: 50px;">
+                            <p><a href="#" style="text-decoration: none"><i class="fas fa-pencil mr-1"></i> Update Status</a></p>
+                        </div>
+                        <div class="container">
+
+
+                            <div class="form-group">
+                                <input class="" type="textarea" name="Post"  style="width: 100%; height: 100px;border: none;" placeholder="What's on your mind?">
+                            </div>
+
+                        </div>
+
+                        <div class="card-footer">
+                            <div class="row my-1">
+                                <div class="col-md-3 align-items-center">
+                                    <input type='file' id='fileid' name="file" hidden />
+                                    <input type='file' id='imageid' name="image" hidden />
+                                    <button class="btn btn-default" type="button" id="buttonid"><i class="fad fa-camera "></i></button>
+                                    <button class="btn btn-default" type="button" id="buttonid2"><i class="fas fa-paperclip"></i></button>
+                                    <button class="btn btn-default" type="button" id="buttonid3"><i class="fas fa-user "></i></button>
+                                    <button class="btn btn-default" type="button" id="buttonid4"><i class="fas fa-map-marker-alt "></i></button>
+
+                                </div>
+                                <div class="col-md-2">
+                                    <select class="mt-2" id="postType" name="postType">
+                                        <option value="HelpPost">Help Post</option>
+                                        <option value="Article">Article</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <select class="mt-2" id="privacy" name="privacy">
+                                        <option value="Public">Public</option>
+                                        <option value="Friends">Friends</option>
+                                        <option value="OnlyMe">Only Me</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <button class="btn btn-primary" style="float: right;">Post</button>
+                                </div>
+                            </div>
+                            <div class="row  my-1">
+                                <div class="col-md-5">
+                                    <div class="mt-1" style="display:none" id='clock'></div>
+                                </div>
+                                <div class="col-md-7 ">
+                                    <div class="h3 mt-3" id="attachmentField" style="display:none"><i class="text-danger fal fa-file-pdf "></i><p class="ml-2 h5" id="attachmentText"></p></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                @foreach (var posts in Model.Posts.Where(i => i.userId == Convert.ToInt32(Session["userId"])))
+                {
+                    DateTime currentTime = DateTime.Now;
+                    DateTime postedTime =Convert.ToDateTime(posts.date_time);
+                    int days = Convert.ToInt32(currentTime.Subtract(postedTime).TotalDays);
+                    int hour = Convert.ToInt32(currentTime.Subtract(postedTime).TotalHours);
+                    int minutes = Convert.ToInt32(currentTime.Subtract(postedTime).TotalMinutes);
+                    int seconds = Convert.ToInt32(currentTime.Subtract(postedTime).TotalSeconds);
+            <div class="f-card mt-4" style="width:92%;">
+                @foreach (var user in Model.Users.Where(i => i.userId == posts.userId))
+                {
+                <div class="header">
+                    <div class="options"><i class="fa fa-chevron-down"></i></div>
+                    <img class="co-logo rounded-circle" src="@Url.Content(user.image)" />
+                    <div class="co-name"><a href="#">@user.userName</a></div>
+                    @if (days >= 1)
+                    {
+                        <div class="time"><a href="#">@days Days</a> · <i class="fa fa-globe"></i></div>
+                    }
+                    else if (hour >= 1)
+                    {
+                        <div class="time"><a href="#">@hour Hours</a> · <i class="fa fa-globe"></i></div>
+                    }
+                    else if (minutes >= 1)
+                    {
+                        <div class="time"><a href="#">@minutes Minutes</a> · <i class="fa fa-globe"></i></div>
+                    }
+                    else
+                    {
+                        <div class="time"><a href="#">@seconds seconds</a> · <i class="fa fa-globe"></i></div>
+                    }
+
+                </div>
+                }
+                    <div class="content">
+                        <p class="h6 ml-1">@posts.post </p>
+                    </div>
+               
+                    <div class="reference">
+                        @if (posts.postImage != "")
+                        {
+                            <img class="reference-thumb" src="@Url.Content(posts.postImage)" />
+
+                        }
+                        @if (posts.file != "")
+                        {
+                             String[] getFileName = posts.file.Split('/'); 
+                            <div class="reference-content">
+                                <div class="reference-title">Attachment</div>
+                                <div class="reference-subtitle"><a href="@Url.Content(posts.file)" target="_blank" style="text-decoration:none">@getFileName[getFileName.Length - 1]</a>  </div>
+                                <div class="reference-font">PDF</div>
+                            </div>
+                        }
+                       
+                    </div>
+                    <div class="social mt-4">
+                        <div class="social-content"></div>
+                        <div class="social-buttons">
+                            <span><i class="fas fa-heart fa-lg text-danger"></i> 8 </span>
+                            <span> <i class="fas fa-thumbtack fa-lg"></i> 2</span>
+                            <span><i class="fas fa-thumbs-down fa-lg text-info"></i> 1</span>
+                        </div>
+                    </div>
+                </div>
+
+                }
+                
+
+            </div>
+
+        </div>
+            
+        
+        
+
+    </div>
+
+
+</div>
+
+<script>
+    document.getElementById('buttonid').addEventListener('click', openDialog);
+
+    function openDialog() {
+        document.getElementById('imageid').click();
+    }
+    document.getElementById('buttonid2').addEventListener('click', openDialog1);
+
+    function openDialog1() {
+        document.getElementById('fileid').click();
+    }
+
+
+</script>
+<script>
+    document.getElementById('imageid').addEventListener('change', readURL, true);
+    document.getElementById('fileid').addEventListener('change', readURLFile, true);
+    function readURL() {
+        var file = document.getElementById("imageid").files[0];
+        var reader = new FileReader();
+        reader.onloadend = function () {
+            document.getElementById('clock').style.backgroundImage = "url(" + reader.result + ")";
+            document.getElementById("clock").style.display = "block";
+        }
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+        }
+    }
+    function readURLFile() {
+        var file = document.getElementById("fileid");
+        document.getElementById('attachmentText').innerHTML = file.value;
+        document.getElementById("attachmentField").style.display = "flex";
+
+
+    }
+</script>

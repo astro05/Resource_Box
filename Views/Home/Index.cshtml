@@ -1,0 +1,307 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="container-fluid mt-3" id="resourceContainer">
+    <div class="row ">
+        <div class=" col-lg-3">
+            <div class="list-group" id="categoryList">
+                <a href="#" style="text-decoration: none;" class="list-group-item list-group-item-dark homeText">All</a>
+                <a href="#" onclick="showBooks()" style="text-decoration: none;" class="list-group-item list-group-item-dark homeText">Books</a>
+                <a href="#" onclick="showElectricalItems()" style="text-decoration: none;" class="list-group-item list-group-item-dark homeText">Electrical-Items</a>
+                <a href="#"  onclick="showOthers()" style="text-decoration: none;" class="list-group-item list-group-item-dark homeText">Pdf</a>
+                <a href="#" style="text-decoration: none;" class="list-group-item list-group-item-dark homeText">Articles</a>
+                <a href="@Url.Action("ViewPost","Resource")" style="text-decoration: none;" class="list-group-item list-group-item-dark homeText">Help Posts</a>
+            </div>
+        </div>
+        <div class=" col-lg-7 autoMargin">
+            <div class="mt-3 mb-2 h2 font-weight-bold homeHeading" id="booktag" style="text-align:center;">Books</div>
+            <div class="row" id="books">
+
+                <div class="col-md-3 d-flex">
+                    <div class="card card-default mt-4 mb-3">
+                        <img src="~/Media/Images/Books/teachyourselfc.jpg" alt="Teach C" style="width: 100%;height: 180px;">
+                        <h5 class="mt-1 homeText">Teach Yourself C</h5>
+                        <p class="price mt-auto">250 Taka</p>
+                        <p> Herbert Shchildt</p>
+                        <p class="mt-auto"><button class="buttonNormal">Add to Cart</button></p>
+                    </div>
+                </div>
+
+                <div class="col-md-3 d-flex">
+                    <div class="card card-default mt-4 mb-3">
+                        <img src="~/Media/Images/Books/deception.jpg" alt="Teach C" style="width: 100%;height: 180px;">
+                        <h5 class="mt-1 homeText">Deception Point</h5>
+                        <p class="price mt-auto">150 Taka</p>
+                        <p>Dan Brown</p>
+                        <p class="mt-auto"><button class="mt-auto  buttonNormal">Add to Cart</button></p>
+                    </div>
+                </div>
+                <div class="col-md-3 d-flex">
+                    <div class="card card-default mt-4 mb-3">
+                        <img src="~/Media/Images/Books/algorithm.jpg" alt="Teach C" style="width: 100%;height: 180px;">
+                        <h5 class="mt-1 homeText">Algorithm</h5>
+                        <p class="price mt-auto">250 Taka</p>
+                        <p>P.Cormen</p>
+                        <p class="mt-auto"><button class="mt-auto buttonNormal">Add to Cart</button></p>
+                    </div>
+                </div>
+
+                <div class="col-md-3 d-flex">
+                    <div class="card card-default mt-4 mb-3">
+                        <img src="~/Media/Images/Books/teachyourselfc.jpg" alt="Teach C" style="width: 100%;height: 180px;">
+                        <h5 class="mt-auto homeText">Teach Yourself C</h5>
+                        <p class="price mt-auto">250 Taka</p>
+                        <p> Herbert Shchildt</p>
+                        <p class="mt-auto"><button class="buttonNormal">Add to Cart</button></pclass="mt-auto>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-3 mb-2 h2 font-weight-bold homeHeading" id="electrictag" style="text-align:center;">Electrical Items</div>
+            <div class="row" id="electric">
+
+                <div class="col-md-3 d-flex">
+                    <div class="card card-default mt-4 mb-3">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Arduino_Uno_-_R3.jpg" alt="Arduino" style="width:100%;height: 180px;">
+                        <h5 class="mt-auto homeText">Arduino Uno</h5>
+                        <p class="price mt-auto">400 Taka</p>
+                        <p> Arduino CC</p>
+                        <p class="mt-auto" ><button class="buttonNormal">Add to Cart</button></p>
+                    </div>
+                </div>
+                <div class="col-md-3 d-flex">
+                    <div class="card card-default mt-4 mb-3">
+                        <img src="https://cdn.sparkfun.com//assets/parts/8/5/0/3/12002-Breadboard_-_Self-Adhesive__White_-01.jpg" alt="Arduino" style="width:100%;height: 180px;">
+                        <h5 class="mt-1 homeText">Breadboard </h5>
+                        <p class="price">100 Taka</p>
+                        <p> 10pcs</p>
+                        <p class="mt-auto"><button class="buttonNormal">Add to Cart</button></p>
+                    </div>
+                </div>
+                <div class="col-md-3 d-flex">
+                    <div class="card card-default mt-4 mb-3">
+                        <img src="https://www.metravi.com/wp-content/uploads/Metravi-6030A-Digital-Multimeter-6-600x600.jpg" alt="Arduino" style="width: 100%;height: 180px;">
+                        <h5 class="mt-1 homeText">Multimeter</h5>
+                        <p class="price">600 Taka</p>
+                        <p>Fluke</p>
+                        <p class="mt-auto"><button class="buttonNormal">Add to Cart</button></p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="mt-3 mb-2 h2 font-weight-bold homeHeading" id="otherstag" style="text-align:center;">Others</div>
+            <div class="row" id="others">
+
+                <div class="col-md-3 d-flex">
+                    <div class="card card-default mt-4 mb-3">
+                        <img src="https://images-na.ssl-images-amazon.com/images/I/4155IG2BC2L._SL1000_.jpg" alt="Arduino" style="width:100%;height: 180px;">
+                        <h5 class="mt-1 homeText">T-Scale</h5>
+                        <p class="price">50 Taka</p>
+                        <p> 1 Pcs</p>
+                        <p class="mt-auto"><button class="buttonNormal">Add to Cart</button></p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Do not display this image at the moment
+        <p class="h1 mt-5">Login</p>
+        <form  action=welcome.html method="post">
+           {%csrf_token%}
+            <div class="form-group mt-5">
+                <label for="name">Name</label>
+                <input class="form-control" type="text" name="name" placeholder="Enter Name">
+            </div>
+             <div class="form-group">
+                <label for="Email">Email</label>
+                <input class="form-control" type="text" name="email" placeholder="Enter Email">
+            </div>
+            <div class="form-group">
+                <label for="Phone">Phone</label>
+                <input class="form-control" type="text" name="phone" placeholder="Enter Phone">
+            </div>
+            <div class="form-group">
+                <label for="Messege">Messege</label>
+                <input class="form-control " type="text" name="messege" placeholder="Enter Messege">
+            </div>
+            <button class="btn btn-primary mt-2" type="submit">Submit</button>
+
+
+        </form>
+         -->
+    </div>
+</div>
+
+<script src="~/Scripts/jquery.min.js"></script>
+<script>
+        var ph = "Search Items by Book Name e.g. \"Algorithms\" or Author Name e.g. \"Herbert Schildt\"",
+            searchBar = $('#search_form'),
+            phCount = 0;
+
+
+        function randDelay(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+
+
+        function printLetter(string, el) {
+
+            var arr = string.split(''),
+                input = el,
+
+                origString = string,
+
+                curPlace = $(input).attr("placeholder"),
+
+                placeholder = curPlace + arr[phCount];
+
+            setTimeout(function () {
+
+                $(input).attr("placeholder", placeholder);
+
+                phCount++;
+
+                if (phCount < arr.length) {
+                    printLetter(origString, input);
+                }
+
+            }, randDelay(50, 90));
+        }
+
+
+        function placeholder() {
+            $(searchBar).attr("placeholder", "");
+            printLetter(ph, searchBar);
+        }
+
+        placeholder();
+        $('.submit').click(function (e) {
+            phCount = 0;
+            e.preventDefault();
+            placeholder();
+        });
+
+</script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+    function showBooks() {
+        document.getElementById("resourceContainer").classList.add("blur");
+        let timerInterval
+        Swal.fire({
+            title: 'Wait!',
+            html: '',
+            timer: 800,
+            timerProgressBar: true,
+            didOpen: () => {
+                Swal.showLoading()
+                timerInterval = setInterval(() => {
+                    const content = Swal.getContent()
+                    if (content) {
+                        const b = content.querySelector('b')
+                        if (b) {
+
+                        }
+                    }
+                }, 100)
+            },
+            willClose: () => {
+                clearInterval(timerInterval)
+            }
+        }).then((result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+                document.getElementById("resourceContainer").classList.remove("blur");
+            }
+        })
+
+       
+        document.getElementById("books").style.display = "flex";
+        document.getElementById("booktag").style.display = "flex";
+        document.getElementById("booktag").style.justifyContent = "center";
+        document.getElementById("electrictag").style.display = "none";
+        document.getElementById("electric").style.display = "none";
+        document.getElementById("others").style.display = "none";
+        document.getElementById("otherstag").style.display = "none";
+    }
+    function showElectricalItems() {
+        document.getElementById("resourceContainer").classList.add("blur");
+        let timerInterval
+        Swal.fire({
+            title: 'Wait!',
+            html: '',
+            timer: 800,
+            timerProgressBar: true,
+            didOpen: () => {
+                Swal.showLoading()
+                timerInterval = setInterval(() => {
+                    const content = Swal.getContent()
+                    if (content) {
+                        const b = content.querySelector('b')
+                        if (b) {
+
+                        }
+                    }
+                }, 100)
+            },
+            willClose: () => {
+                clearInterval(timerInterval)
+            }
+        }).then((result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+                document.getElementById("resourceContainer").classList.remove("blur");
+            }
+        })
+    
+        document.getElementById("electric").style.display = "flex";
+        document.getElementById("electrictag").style.display = "flex";
+        document.getElementById("electrictag").style.justifyContent = "center";
+        document.getElementById("booktag").style.display = "none";
+        document.getElementById("books").style.display = "none";
+        document.getElementById("others").style.display = "none";
+        document.getElementById("otherstag").style.display = "none";
+    }
+    
+    function showOthers() {
+        document.getElementById("resourceContainer").classList.add("blur");
+        let timerInterval
+        Swal.fire({
+            title: 'Wait!',
+            html: '',
+            timer: 800,
+            timerProgressBar: true,
+            didOpen: () => {
+                Swal.showLoading()
+                timerInterval = setInterval(() => {
+                    const content = Swal.getContent()
+                    if (content) {
+                        const b = content.querySelector('b')
+                        if (b) {
+
+                        }
+                    }
+                }, 100)
+            },
+            willClose: () => {
+                clearInterval(timerInterval)
+            }
+        }).then((result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+                document.getElementById("resourceContainer").classList.remove("blur");
+            }
+        })
+    
+        document.getElementById("others").style.display = "flex";
+        document.getElementById("otherstag").style.display = "flex";
+        document.getElementById("otherstag").style.justifyContent = "center";
+        document.getElementById("electrictag").style.display = "none";
+        document.getElementById("electric").style.display = "none";
+        document.getElementById("books").style.display = "none";
+        document.getElementById("booktag").style.display = "none";
+    }
+    
+</script>

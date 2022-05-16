@@ -1,0 +1,93 @@
+﻿
+@{
+    ViewBag.Title = "Registration";
+}
+
+
+
+@Styles.Render("~/Content/css/login")
+
+
+
+<!-- partial:index.partial.html -->
+<div class="container c">
+    <div class="row" id="customForm">
+        <div class="col-md-3"></div>
+        <div class="ml-5 mt-4">
+
+
+            <form id="form" class="f mt-5" action="@Url.Action("Registration", "Authentication")" method="post">
+
+                <div class="h2 mb-4 homeText" style="text-align: center; font-weight: bold;">Create Your ResourceBox Account</div>
+                <div class="h3 text-center mt-3 "><i class="far fa-user fa-3x"></i><span class="badge  align-top"><i class="fas fa-plus"></i></span></div>
+                <div class="fm mt-4">
+                    <label for="username">Username</label>
+                    <input type="text" placeholder="Name" name="username" id="username" />
+                    <i class="fas fa-check-circle"></i>
+                    <i class="fas fa-exclamation-circle"></i>
+                    <small>Error message</small>
+                </div>
+                <div class="fm">
+                    <label for="username">Email</label>
+                    <input type="email" placeholder="a@example-pop.com" name="email" id="email" />
+                    <i class="fas fa-check-circle"></i>
+                    <i class="fas fa-exclamation-circle"></i>
+                    <small>Error message</small>
+                </div>
+                <div class="fm">
+                    <label for="phone">Phone</label>
+                    <input type="text" placeholder="Enter 11 Digit Phone  Number" name="phone" id="phone" />
+                    <i class="fas fa-check-circle"></i>
+                    <i class="fas fa-exclamation-circle"></i>
+                    <small>Error message</small>
+                </div>
+                <div class="fm">
+                    <label for="username">Password</label>
+                    <input type="password" placeholder="Enter Your Password" name="password" id="password" />
+                    <i class="fas fa-check-circle"></i>
+                    <i class="fas fa-exclamation-circle"></i>
+                    <small>Error message</small>
+                </div>
+                <div class="fm">
+                    <label for="username">Password Check</label>
+                    <input type="password" placeholder="Enter Your Password Again" id="password2" />
+                    <i class="fas fa-check-circle"></i>
+                    <i class="fas fa-exclamation-circle"></i>
+                    <small>Error message</small>
+                </div>
+                <button class="btn btn-success">Submit</button>
+                <div class="mt-2" style="text-align: center"> Already have a account ? <a href="@Url.Action("Login", "Authentication")" class="text-danger"> Login</a> </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- SOCIAL PANEL HTML -->
+<!-- partial -->
+
+<script>
+var verification = @ViewBag.verification.ToString().ToLower();
+
+    if(verification)
+    {
+        setErrorFor(phone, 'Phone already exist.');
+        setErrorFor(password, 'Re-Enter Your Password.');
+    }
+    
+
+    function setErrorFor(input, message) {
+	const formControl = input.parentElement;
+	const small = formControl.querySelector('small');
+	formControl.className = 'fm error';
+	small.innerText = message;
+}
+
+function setSuccessFor(input) {
+	const formControl = input.parentElement;
+	formControl.className = 'fm success';
+}
+
+</script>
+
+@Scripts.Render("~/bundles/registration")

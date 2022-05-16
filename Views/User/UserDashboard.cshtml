@@ -1,0 +1,122 @@
+﻿
+@{
+    ViewBag.Title = "UserDashboard";
+}
+@model ResourceBox.Models.ViewModel
+<link rel="stylesheet" href="~/Content/dashboard.css" />
+
+<div class="container c">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-11">
+            <form id="form" class="f mt-5" action="@Url.Action("Login", "Authentication")" method="post">
+                @foreach (var user in Model.Users.Where(i => i.userId == Convert.ToInt32(Session["userId"])))
+                {
+                    <div class="main__title">
+                        <img class="rounded-circle" src="@Url.Content(user.image)" alt="" />
+                        <div class="main__greeting">
+                            <h1>Hello @user.userName</h1>
+                            <p>Welcome to your  dashboard</p>
+                        </div>
+                    </div>
+                }
+                <!-- MAIN TITLE ENDS HERE -->
+                <!-- MAIN CARDS STARTS HERE -->
+
+                <div class="main__cards">
+                    <div class="card">
+                        <i class="fas fa-flag fa-2x text-secondary"
+                           aria-hidden="true"></i>
+                        <div class="card_inner">
+                            <p class="text-primary-p">Number of Contributions</p>
+                            <span class="font-bold text-title ml-4 text-secondary">15</span>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <i class="fas fa-user-friends fa-2x text-danger"></i>
+                        <div class="card_inner">
+                            <p class="text-primary-p">Number of Follower</p>
+                            <span class="font-bold text-title ml-4 text-danger">45</span>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <i class="fas fa-sticky-note fa-2x text-warning"></i>
+                        <div class="card_inner">
+                            <p class="text-primary-p">Number of Posts</p>
+                            <span class="font-bold text-title ml-4 text-warning">@ViewBag.postCount</span>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <i class="fas fa-thumbs-up fa-2x text-primary"
+                           aria-hidden="true"></i>
+                        <div class="card_inner">
+                            <p class="text-primary-p">Number of Likes</p>
+                            <span class="font-bold text-title ml-4 text-primary">645</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="alert1" class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>New Book Request!</strong> Fahmeed Wanted Your Book Algorithm.
+                    <button onclick="denied('alert1')" type="button" class="btn btn-outline-danger float-right mx-2">Deny</button>
+                    <button onclick="approved('alert1')" type="button" class="btn btn-outline-success float-right mx-2">Approve</button>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div id="alert2" class="alert alert-secondary alert-dismissible fade show" role="alert">
+                    <strong>Collaboration Request!</strong> Abrar wants to collaborate with you.
+                    <button onclick="denied('alert2')" type="button" class="btn btn-outline-danger float-right mx-2">Deny</button>
+                    <button onclick="approved('alert2')" type="button" class="btn btn-outline-success float-right mx-2">Approve</button>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div id="alert3" class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Book Request!</strong> Anika wants to buy a  Teach Yourself C.
+                    <button onclick="denied('alert3')" type="button" class="btn btn-outline-danger float-right mx-2">Deny</button>
+                    <button onclick="approved('alert3')" type="button" class="btn btn-outline-success float-right mx-2">Approve</button>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+
+
+    function approved(id) {
+        document.getElementById(id).style.display = "none";
+        ToastAlert('success', 'Request Accepted');
+    }
+    function denied(id) {
+        document.getElementById(id).style.display = "none";
+        ToastAlert('error', 'Request Denied');
+    }
+    function ToastAlert(type, text) {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'bottom-start',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: false,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        Toast.fire({
+            icon: type,
+            title: text
+        })
+    }
+
+</script>
+
+<!-- MAIN CARDS ENDS HERE -->

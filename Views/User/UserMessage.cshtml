@@ -1,0 +1,634 @@
+﻿@model ResourceBox.Models.ViewModel
+@{ResourceBox.Models.ViewModel model = new ResourceBox.Models.ViewModel();
+    model.UserChats = Model.UserChats.Reverse();}
+@{
+    ViewBag.Title = "UserMessage";
+}
+@Styles.Render("~/Content/css/user-chat")
+@{int initialRecieverId = 0;
+    if (ViewBag.javaScriptLoaded)
+    {
+        initialRecieverId = ViewBag.SenderId;
+    }
+}
+<script>
+    
+    document.getElementById("overlay").style.borderRadius = "0";
+    document.getElementById("navToggle").style.fontSize = "10px";
+    document.getElementById("navText").style.fontSize = "19px";
+    document.getElementById("navLine").style.marginTop = "1px";
+
+</script>
+<div class="container"></div>
+
+<div class="messaging mt-lg-0 mt-5">
+    <div class="inbox_msg">
+        <div class="inbox_people">
+            <div class="headind_srch">
+                <div class="recent_heading">
+                    <h4 class="homeHeading">Recent Messages</h4>
+                </div>
+                <div class="srch_bar homeText">
+                    <div class="stylish-input-group">
+                        <input type="text" class="search-bar" placeholder="Search">
+                        <span class="input-group-addon">
+                            <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="inbox_chat homeText">
+
+                @{ var iteratedOnce = false; }
+
+                @foreach (var messages in model.UserChats)
+                {
+                    DateTime dt = Convert.ToDateTime(messages.date_time);
+                    String valuePair = messages.senderId + "," + messages.recieverId;
+                    String valuePair2 = messages.recieverId + "," + messages.senderId;
+                    if (!ViewBag.list.Contains(valuePair))
+                    {
+                        ViewBag.list.Add(valuePair);
+                        ViewBag.list.Add(valuePair2);
+                        if (messages.senderId == Convert.ToInt32(Session["userId"]))
+                        {
+                            if (!iteratedOnce && !ViewBag.javaScriptLoaded)
+                            {
+                                if (messages.seen == "true" || Convert.ToInt32(Session["userId"]) == messages.senderId)
+                                {
+                                    <div class="chat_list active_chat" onclick="sendInboxValue('@messages.recieverId');">
+                                        <div class="chat_people">
+                                            <div class="chat_img"> <img class="rounded-circle" src="@Url.Content(messages.recieverImage)" alt="sunil"> </div>
+                                            <div class="chat_ib">
+                                                <h5>@messages.recieverName <span class="chat_date">@dt.Day @dt.ToString("MMMM")</span></h5>
+                                                @foreach (var x in model.UserChats)
+                                                {
+                                                    if (x.senderId == messages.senderId && x.recieverId == messages.recieverId || x.senderId == messages.recieverId && x.recieverId == messages.senderId)
+                                                    {
+                                                        <p>
+                                                            @x.message
+
+                                                        </p>
+                                                        break;
+                                                    }
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="chat_list bg-danger" onclick="sendInboxValue('@messages.recieverId');">
+                                        <div class="chat_people">
+                                            <div class="chat_img"> <img class="rounded-circle" src="@Url.Content(messages.recieverImage)" alt="sunil"> </div>
+                                            <div class="chat_ib">
+                                                <h5 class="font-weight-bold font-italic text-white">@messages.recieverName <span class="chat_date">@dt.Day @dt.ToString("MMMM")</span></h5>
+                                                @foreach (var x in model.UserChats)
+                                                {
+                                                    if (x.senderId == messages.senderId && x.recieverId == messages.recieverId || x.senderId == messages.recieverId && x.recieverId == messages.senderId)
+                                                    {
+                                                        <p class="h5 text-white font-weight-normal">
+                                                            @x.message
+
+                                                        </p>
+                                                        break;
+                                                    }
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                }
+                                {
+                                    if (!ViewBag.javaScriptLoaded)
+                                    {
+                                        initialRecieverId = messages.recieverId;
+                                    }
+                                    iteratedOnce = true;
+                                }
+                            }
+                            else if (ViewBag.javaScriptLoaded)
+                            {
+                                if (@messages.recieverId == initialRecieverId)
+                                {
+                                    if (messages.seen == "true" || Convert.ToInt32(Session["userId"]) == messages.senderId)
+                                    {
+                                        <div class="chat_list active_chat" onclick="sendInboxValue('@messages.recieverId');">
+                                            <div class="chat_people">
+                                                <div class="chat_img"> <img class="rounded-circle" src="@Url.Content(messages.recieverImage)" alt="sunil"> </div>
+                                                <div class="chat_ib">
+                                                    <h5>@messages.recieverName <span class="chat_date">@dt.Day @dt.ToString("MMMM")</span></h5>
+                                                    @foreach (var x in model.UserChats)
+                                                    {
+                                                        if (x.senderId == messages.senderId && x.recieverId == messages.recieverId || x.senderId == messages.recieverId && x.recieverId == messages.senderId)
+                                                        {
+                                                            <p>
+                                                                @x.message
+
+                                                            </p>
+                                                            break;
+                                                        }
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="chat_list bg-danger" onclick="sendInboxValue('@messages.recieverId');">
+                                            <div class="chat_people">
+                                                <div class="chat_img"> <img class="rounded-circle" src="@Url.Content(messages.recieverImage)" alt="sunil"> </div>
+                                                <div class="chat_ib">
+                                                    <h5 class="font-weight-bold font-italic text-white">@messages.recieverName <span class="chat_date">@dt.Day @dt.ToString("MMMM")</span></h5>
+                                                    @foreach (var x in model.UserChats)
+                                                    {
+                                                        if (x.senderId == messages.senderId && x.recieverId == messages.recieverId || x.senderId == messages.recieverId && x.recieverId == messages.senderId)
+                                                        {
+                                                            <p class="h5 text-white font-weight-normal">
+                                                                @x.message
+
+                                                            </p>
+                                                            break;
+                                                        }
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    }
+                                }
+                                else
+                                {
+                                    if (messages.seen == "true" || Convert.ToInt32(Session["userId"]) == messages.senderId)
+                                    {
+                                        <div class="chat_list" onclick="sendInboxValue('@messages.recieverId');">
+                                            <div class="chat_people">
+                                                <div class="chat_img"> <img class="rounded-circle" src="@Url.Content(messages.recieverImage)" alt="sunil"> </div>
+                                                <div class="chat_ib">
+                                                    <h5>@messages.recieverName <span class="chat_date">@dt.Day @dt.ToString("MMMM")</span></h5>
+                                                    @foreach (var x in model.UserChats)
+                                                    {
+                                                        if (x.senderId == messages.senderId && x.recieverId == messages.recieverId || x.senderId == messages.recieverId && x.recieverId == messages.senderId)
+                                                        {
+                                                            <p>
+                                                                @x.message
+
+                                                            </p>
+                                                            break;
+                                                        }
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="chat_list bg-danger" onclick="sendInboxValue('@messages.recieverId');">
+                                            <div class="chat_people">
+                                                <div class="chat_img"> <img class="rounded-circle" src="@Url.Content(messages.recieverImage)" alt="sunil"> </div>
+                                                <div class="chat_ib">
+                                                    <h5 class="font-weight-bold font-italic text-white">@messages.recieverName <span class="chat_date">@dt.Day @dt.ToString("MMMM")</span></h5>
+                                                    @foreach (var x in model.UserChats)
+                                                    {
+                                                        if (x.senderId == messages.senderId && x.recieverId == messages.recieverId || x.senderId == messages.recieverId && x.recieverId == messages.senderId)
+                                                        {
+                                                            <p class="h5 text-white font-weight-normal">
+                                                                @x.message
+
+                                                            </p>
+                                                            break;
+                                                        }
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (messages.seen == "true" || Convert.ToInt32(Session["userId"]) == messages.senderId)
+                                {
+                                    <div class="chat_list " onclick="sendInboxValue('@messages.recieverId');">
+                                        <div class="chat_people">
+                                            <div class="chat_img"> <img class="rounded-circle" src="@Url.Content(messages.recieverImage)" alt="sunil"> </div>
+                                            <div class="chat_ib">
+                                                <h5>@messages.recieverName <span class="chat_date">@dt.Day @dt.ToString("MMMM")</span></h5>
+                                                @foreach (var x in model.UserChats)
+                                                {
+                                                    if (x.senderId == messages.senderId && x.recieverId == messages.recieverId || x.senderId == messages.recieverId && x.recieverId == messages.senderId)
+                                                    {
+                                                        <p>
+                                                            @x.message
+
+                                                        </p>
+                                                        break;
+                                                    }
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="chat_list bg-danger" onclick="sendInboxValue('@messages.recieverId');">
+                                        <div class="chat_people">
+                                            <div class="chat_img"> <img class="rounded-circle" src="@Url.Content(messages.recieverImage)" alt="sunil"> </div>
+                                            <div class="chat_ib">
+                                                <h5 class="font-weight-bold font-italic text-white">@messages.recieverName <span class="chat_date">@dt.Day @dt.ToString("MMMM")</span></h5>
+                                                @foreach (var x in model.UserChats)
+                                                {
+                                                    if (x.senderId == messages.senderId && x.recieverId == messages.recieverId || x.senderId == messages.recieverId && x.recieverId == messages.senderId)
+                                                    {
+                                                        <p class="h5 text-white font-weight-normal">
+                                                            @x.message
+
+                                                        </p>
+                                                        break;
+                                                    }
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                }
+                            }
+
+                        }
+                        if (messages.recieverId == Convert.ToInt32(Session["userId"]))
+                        {
+                            if (!iteratedOnce && !ViewBag.javaScriptLoaded)
+                            {
+                                if (messages.seen == "true")
+                                {
+                                    <div class="chat_list active_chat" onclick="sendInboxValue('@messages.senderId');">
+                                        <div class="chat_people">
+                                            <div class="chat_img"> <img class="rounded-circle" src="@Url.Content(messages.senderImage)" alt="sunil"> </div>
+                                            <div class="chat_ib">
+                                                <h5>@messages.senderName <span class="chat_date">@dt.Day @dt.ToString("MMMM")</span></h5>
+                                                @foreach (var x in model.UserChats)
+                                                {
+                                                    if (x.senderId == messages.senderId && x.recieverId == messages.recieverId || x.senderId == messages.recieverId && x.recieverId == messages.senderId)
+                                                    {
+                                                        <p>
+                                                            @x.message
+
+                                                        </p>
+                                                        break;
+                                                    }
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="chat_list bg-danger" onclick="sendInboxValue('@messages.senderId');">
+                                        <div class="chat_people">
+                                            <div class="chat_img"> <img class="rounded-circle" src="@Url.Content(messages.senderImage)" alt="sunil"> </div>
+                                            <div class="chat_ib">
+                                                <h5 class="font-weight-bold font-italic text-white">@messages.senderName <span class="chat_date">@dt.Day @dt.ToString("MMMM")</span></h5>
+                                                @foreach (var x in model.UserChats)
+                                                {
+                                                    if (x.senderId == messages.senderId && x.recieverId == messages.recieverId || x.senderId == messages.recieverId && x.recieverId == messages.senderId)
+                                                    {
+                                                        <p class="h5 text-white font-weight-normal">
+                                                            @x.message
+
+                                                        </p>
+                                                        break;
+                                                    }
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                }
+                                {
+                                    if (!ViewBag.javaScriptLoaded)
+                                    {
+                                        initialRecieverId = messages.senderId;
+                                    }
+                                    iteratedOnce = true;
+                                }
+                            }
+                            else if (ViewBag.javaScriptLoaded)
+                            {
+                                if (@messages.senderId == initialRecieverId)
+                                {
+                                    if (messages.seen == "true")
+                                    {
+                                        <div class="chat_list active_chat" onclick="sendInboxValue('@messages.senderId');">
+                                            <div class="chat_people">
+                                                <div class="chat_img"> <img class="rounded-circle" src="@Url.Content(messages.senderImage)" alt="sunil"> </div>
+                                                <div class="chat_ib">
+                                                    <h5>@messages.senderName <span class="chat_date">@dt.Day @dt.ToString("MMMM")</span></h5>
+                                                    @foreach (var x in model.UserChats)
+                                                    {
+                                                        if (x.senderId == messages.senderId && x.recieverId == messages.recieverId || x.senderId == messages.recieverId && x.recieverId == messages.senderId)
+                                                        {
+                                                            <p>
+                                                                @x.message
+
+                                                            </p>
+                                                            break;
+                                                        }
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="chat_list bg-danger" onclick="sendInboxValue('@messages.senderId');">
+                                            <div class="chat_people">
+                                                <div class="chat_img"> <img class="rounded-circle" src="@Url.Content(messages.senderImage)" alt="sunil"> </div>
+                                                <div class="chat_ib">
+                                                    <h5 class="font-weight-bold font-italic text-white">@messages.senderName <span class="chat_date">@dt.Day @dt.ToString("MMMM")</span></h5>
+                                                    @foreach (var x in model.UserChats)
+                                                    {
+                                                        if (x.senderId == messages.senderId && x.recieverId == messages.recieverId || x.senderId == messages.recieverId && x.recieverId == messages.senderId)
+                                                        {
+                                                            <p class="h5 text-white font-weight-normal">
+                                                                @x.message
+
+                                                            </p>
+                                                            break;
+                                                        }
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    }
+                                }
+                                else
+                                {
+                                    if (messages.seen == "true")
+                                    {
+                                        <div class="chat_list" onclick="sendInboxValue('@messages.senderId');">
+                                            <div class="chat_people">
+                                                <div class="chat_img"> <img class="rounded-circle" src="@Url.Content(messages.senderImage)" alt="sunil"> </div>
+                                                <div class="chat_ib">
+                                                    <h5>@messages.senderName <span class="chat_date">@dt.Day @dt.ToString("MMMM")</span></h5>
+                                                    @foreach (var x in model.UserChats)
+                                                    {
+                                                        if (x.senderId == messages.senderId && x.recieverId == messages.recieverId || x.senderId == messages.recieverId && x.recieverId == messages.senderId)
+                                                        {
+                                                            <p>
+                                                                @x.message
+
+                                                            </p>
+                                                            break;
+                                                        }
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="chat_list bg-danger" onclick="sendInboxValue('@messages.senderId');">
+                                            <div class="chat_people">
+                                                <div class="chat_img"> <img class="rounded-circle" src="@Url.Content(messages.senderImage)" alt="sunil"> </div>
+                                                <div class="chat_ib">
+                                                    <h5 class="font-weight-bold font-italic text-white">@messages.senderName <span class="chat_date">@dt.Day @dt.ToString("MMMM")</span></h5>
+                                                    @foreach (var x in model.UserChats)
+                                                    {
+                                                        if (x.senderId == messages.senderId && x.recieverId == messages.recieverId || x.senderId == messages.recieverId && x.recieverId == messages.senderId)
+                                                        {
+                                                            <p class="h5 text-white font-weight-normal">
+                                                                @x.message
+
+                                                            </p>
+                                                            break;
+                                                        }
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (messages.seen == "true")
+                                {
+                                    <div class="chat_list " onclick="sendInboxValue('@messages.senderId');">
+                                        <div class="chat_people">
+                                            <div class="chat_img"> <img class="rounded-circle" src="@Url.Content(messages.senderImage)" alt="sunil"> </div>
+                                            <div class="chat_ib">
+                                                <h5>@messages.senderName <span class="chat_date">@dt.Day @dt.ToString("MMMM")</span></h5>
+                                                @foreach (var x in model.UserChats)
+                                                {
+                                                    if (x.senderId == messages.senderId && x.recieverId == messages.recieverId || x.senderId == messages.recieverId && x.recieverId == messages.senderId)
+                                                    {
+                                                        <p>
+                                                            @x.message
+
+                                                        </p>
+                                                        break;
+                                                    }
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="chat_list bg-danger" onclick="sendInboxValue('@messages.senderId');">
+                                        <div class="chat_people">
+                                            <div class="chat_img"> <img class="rounded-circle" src="@Url.Content(messages.senderImage)" alt="sunil"> </div>
+                                            <div class="chat_ib">
+                                                <h5 class="font-weight-bold font-italic text-white">@messages.senderName <span class="chat_date">@dt.Day @dt.ToString("MMMM")</span></h5>
+                                                @foreach (var x in model.UserChats)
+                                                {
+                                                    if (x.senderId == messages.senderId && x.recieverId == messages.recieverId || x.senderId == messages.recieverId && x.recieverId == messages.senderId)
+                                                    {
+                                                        <p class="h5 text-white font-weight-normal">
+                                                            @x.message
+
+                                                        </p>
+                                                        break;
+                                                    }
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                }
+                            }
+
+                        }
+
+                    }
+
+                }
+                <!-- This is a comment
+                <div class="chat_list bg-danger">
+                    <div class="chat_people">
+                        <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                        <div class="chat_ib">
+                            <h5 class="font-weight-bold font-italic text-white">Sunil Rajput <span class="chat_date">Dec 25</span></h5>
+                            <p class="h5 text-white font-weight-normal">
+                                Test, which is a new approach to have all solutions
+                                astrology under one roof.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat_list">
+                    <div class="chat_people">
+                        <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                        <div class="chat_ib">
+                            <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
+                            <p>
+                                Test, which is a new approach to have all solutions
+                                astrology under one roof.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                -->
+            </div>
+        </div>
+        <div class="mesgs homeText" id="content">
+            <div class="msg_history" id="showChats">
+
+                @foreach (var messages in Model.UserChats)
+                {
+                    DateTime dt = Convert.ToDateTime(messages.date_time);
+
+                    if ((String)Session["user"] == messages.senderName && messages.recieverId == initialRecieverId)
+
+                    {
+
+                        <div class="outgoing_msg mb-3">
+                            <div class="sent_msg">
+                                <p>
+                                    @messages.message
+                                </p>
+                                <span class="time_date">@dt.ToString("hh:mm tt")     |   @dt.Day @dt.ToString("MMMM")</span>
+                            </div>
+                        </div>
+                    }
+                    else if (messages.senderId == initialRecieverId && (String)Session["user"] == messages.recieverName)
+                    {
+
+                        <div class="incoming_msg mt-5 mb-3">
+                            <div class="incoming_msg_img"> <img class="rounded-circle" src="@Url.Content(messages.senderImage)" alt="sunil"> </div>
+                            <div class="received_msg">
+                                <div class="received_withd_msg">
+                                    <p>
+                                        @messages.message
+                                    </p>
+
+                                    <span class="time_date">@dt.ToString("hh:mm tt")    |   @dt.Day @dt.ToString("MMMM")</span>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                }
+
+            </div>
+
+
+            <div class="type_msg">
+                <div class="input_msg_write">
+                    <form action="@Url.Action("UserMessage", "User")" method="post">
+                        <input type="text" id="myChatbox" name="message" class="write_msg" placeholder="Type a message" />
+                        <input type="hidden" value="@Convert.ToInt32(Session["userId"])" id="senderId" name="senderId" />
+                        <input type="hidden" value="@initialRecieverId" id="recieverId" name="recieverId" />
+                        <button class="msg_send_btn" onclick="call()" type="button"><i class="fas fa-paper-plane fa-lg" aria-hidden="true"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<audio id="myAudio">
+<source src="~/media/Sound/notification.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+    var element = document.getElementById("showChats");
+    element.scrollTop = element.scrollHeight;
+</script>
+<script>
+
+
+    //document.getElementById("navbarSearch").style.display = "none";
+    //document.getElementById("spacer").style.display = "none";
+</script>
+
+<script>
+
+    function sendInboxValue(SenderId) {
+        var datastring = "SenderId=1 &RecieverId=2 &message=ajaxcall &reloadState=1 &SelectedId=" + SenderId;
+
+        $.ajax({
+            type: "post",
+            url: "UserMessage",
+            data: datastring,
+            success: function ($data) {
+                $("#show_stored_data").html($data);
+            }
+        });
+    }
+
+</script>
+
+
+<script>
+    function call() {
+        var sendMessage = document.getElementById("myChatbox").value;
+        var senderId = document.getElementById("senderId").value;
+        var recieverId = document.getElementById("recieverId").value;
+        var datastring = "SenderId=" + senderId + " &RecieverId=" + recieverId + " &message=" + sendMessage + " &reloadState=2 &SelectedId=0";
+
+        $.ajax({
+            type: "post",
+            url: "UserMessage",
+            data: datastring,
+            success: function ($data) {
+                $("#show_stored_data").html($data);
+          }
+        });
+    }
+
+    var selectedId =@initialRecieverId;
+        function reload() {
+
+            var datastring = "SenderId=1 &RecieverId=2 &message=ajaxcall &reloadState=1 &SelectedId=" + selectedId;
+        $.ajax({
+            type: "post",
+            url: "UserMessage",
+            data: datastring,
+            success: function ($data) {
+                $("#show_stored_data").html($data);
+            }
+        });
+    }
+    setInterval(requestNewAlert, 4000);
+
+
+    function requestNewAlert() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var data = parseInt(this.responseText);
+                console.log(data);
+                if (data > 0) {
+                    reload();
+                }
+            }
+        };
+
+        xhttp.open("GET", "CheckUserHasNewAlert", true);
+        xhttp.send();
+    }
+</script>

@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "EmailVerified";
+}
+
+<div class="container c">
+    <div class="row" id="customForm">
+        <div class="col-md-3"></div>
+        <div class="ml-5 mt-4">
+
+
+            <form id="form" class="f mt-5" action="" method="get">
+
+                @if (ViewBag.Verification)
+                {
+                    <div class="h3 text-success mb-4 homeText" style="text-align: center; font-weight: bold;">Your Email Has Been Successfully Verifed</div>
+                    <div class="mt-2" style="text-align: center"> Please <a href="@Url.Action("Login", "Authentication")" class="text-danger">  Login</a> </div>
+                }
+                else
+                {
+                    <div class="h3 text-danger mb-4 homeText" style="text-align: center; font-weight: bold;">Your Email Verification Is Failed</div>
+                    <div class="mt-2" style="text-align: center"> Please Enter Code <a href="@Url.Action("OTPVerification", "Authentication",new {Email = ViewBag.Email})" class="text-danger"> Again </a> </div>
+                }
+
+
+            </form>
+        </div>
+    </div>
+</div>
